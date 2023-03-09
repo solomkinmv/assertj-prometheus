@@ -30,6 +30,13 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:https://github.com/solomkinmv/assertj-prometheus.git</connection>
+        <developerConnection>scm:git:https://github.com/solomkinmv/assertj-prometheus.git</developerConnection>
+        <url>https://github.com/solomkinmv/assertj-prometheus.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <assertj.version>3.23.1</assertj.version>
