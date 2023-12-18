@@ -43,6 +43,10 @@
         <assertj.version>3.23.1</assertj.version>
         <junit.version>5.8.1</junit.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+        <jreleaser-maven-plugin.version>1.9.0</jreleaser-maven-plugin.version>
+        <pomchecker-maven-plugin.version>1.8.0</pomchecker-maven-plugin.version>
+        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     </properties>
 
     <dependencies>
@@ -80,7 +84,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.4.1</version>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-javadoc</id>
@@ -93,7 +97,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.2.1</version>
+                        <version>${maven-source-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-source</id>
@@ -113,7 +117,7 @@
             <plugin>
                 <groupId>org.kordamp.maven</groupId>
                 <artifactId>pomchecker-maven-plugin</artifactId>
-                <version>1.8.0</version>
+                <version>${pomchecker-maven-plugin.version}</version>
             </plugin>
 
             <plugin>
@@ -125,7 +129,7 @@
             <plugin>
                 <groupId>org.jreleaser</groupId>
                 <artifactId>jreleaser-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>${jreleaser-maven-plugin.version}</version>
                 <configuration>
                     <jreleaser>
                         <signing>
