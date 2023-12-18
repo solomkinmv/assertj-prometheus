@@ -11,6 +11,7 @@
     <name>assertj-prometheus</name>
     <description>AssertJ assertions for Prometheus metrics</description>
     <url>https://github.com/solomkinmv/assertj-prometheus</url>
+    <inceptionYear>2023</inceptionYear>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -127,9 +128,6 @@
                 <version>1.9.0</version>
                 <configuration>
                     <jreleaser>
-                        <project>
-                            <copyright>2023 Maksym Solomkin</copyright>
-                        </project>
                         <signing>
                             <active>ALWAYS</active>
                             <armored>true</armored>
