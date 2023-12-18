@@ -22,6 +22,8 @@ public class PrometheusAssertUsabilityTest {
             cpu_usage{cpu="cpu1"} 0.3
             # TYPE kafka_producer_record_send_total counter
             kafka_producer_record_send_total{kafka_version="3.1.2",operation="PATCH /path/{param:.+}",label_with_dots="some.value-1",} 5.0
+            # CUSTOM TEST INTENDED
+            foo_bar_baz{example="package.Class.method(Parameter1,Parameter2)",value="s!mpl3_@l$.,/\\0()",lol="kek"} 42
             """;
 
     @Test
@@ -35,6 +37,13 @@ public class PrometheusAssertUsabilityTest {
                            value -> value == 10)
                 .hasMetric("kafka_producer_record_send_total",
                            List.of(),
-                           value -> value > 4.5); // todo: filter by name and print output like "expected metric with name 'kafka_producer_record_send_total' to have value > 9, but was 5"
+                           value -> value > 4.5) // todo: filter by name and print output like "expected metric with name 'kafka_producer_record_send_total' to have value > 9, but was 5"
+                .hasMetric("foo_bar_baz",
+                        List.of(
+                                new PrometheusTag("example", "package.Class.method(Parameter1,Parameter2)"),
+                                new PrometheusTag("value", "s!mpl3_@l$.,/\\0()"),
+                                new PrometheusTag("lol", "kek")
+                        )
+                );
     }
 }

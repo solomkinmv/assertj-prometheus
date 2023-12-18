@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PrometheusAssert extends AbstractAssert<PrometheusAssert, String> {
+
+    private static final Pattern TAGS_PATTERN = Pattern.compile("\\w+=\"\\S+?\"(?=,?)");
 
     private final List<PrometheusMetric> metrics;
     private final Booleans booleans = Booleans.instance();
@@ -66,9 +68,11 @@ public class PrometheusAssert extends AbstractAssert<PrometheusAssert, String> {
         double value = Double.parseDouble(line.substring(labelsEnd + 2));
         String metricName = line.substring(0, labelsStart);
         String tagsLine = line.substring(labelsStart + 1, labelsEnd);
-        Set<PrometheusTag> tags = Stream.of(tagsLine.split(","))
-                                        .map(PrometheusAssert::parseTag)
-                                        .collect(Collectors.toSet());
+        Set<PrometheusTag> tags = TAGS_PATTERN.matcher(tagsLine)
+                .results()
+                .map(r -> r.group(0))
+                .map(PrometheusAssert::parseTag)
+                .collect(Collectors.toSet());
         return Optional.of(new PrometheusMetric(metricName, value, tags));
     }
 
